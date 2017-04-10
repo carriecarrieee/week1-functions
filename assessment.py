@@ -25,15 +25,12 @@ go below this docstring.
 #        here', I'd like to visit 'town name here'!" depending on what the function
 #        from part (a) evaluates to.
 
-town_name = raw_input("Enter your hometown: ")
-first_name = raw_input("Enter your first name: ")
-last_name = raw_input("Enter your last name: ")
 
 
 def is_hometown(town_name):
     """Checks if town_name is my hometown (True) or not (False)"""
     
-    my_hometown = "daly city"
+    my_hometown = "my hometown"
 
     if town_name.lower() == my_hometown:
         return True
@@ -54,14 +51,16 @@ def first_and_last(first_name, last_name):
 def intro(town_name, first_name, last_name):
     """Checks if hometowns are the same and prints a greeting"""
 
-    first_and_last(first_name, last_name)
-    is_hometown(town_name)
+    full_name = first_and_last(first_name, last_name)
 
-    if is_hometown == True:
+    if is_hometown(town_name) == True:
         print "Hi, {}, we're from the same place!".format(full_name)
     else:
         print "Hi, {}, I'd like to visit {}!".format(full_name, town_name)
-    
+
+intro("San Francisco", "Carrie", "Li")
+
+
 ###############################################################################
 
 # PART TWO
@@ -107,7 +106,11 @@ def is_berry(fruit):
 
     """
 
-    pass
+    if (fruit == "strawberry") or (fruit == "raspberry") or (fruit == "blackberry"):
+        return True
+    else:
+        return False
+
 
 
 def shipping_cost(fruit):
@@ -121,7 +124,11 @@ def shipping_cost(fruit):
 
     """
 
-    pass
+    if is_berry(fruit) == True:
+        return 0
+    elif is_berry(fruit) == False:
+        return 5
+
 
 
 def append_to_list(lst, num):
@@ -132,11 +139,15 @@ def append_to_list(lst, num):
     [3, 5, 7, 2]
 
     """
+#    (c) Make a function that takes in a number and a list of numbers. It should
+#        return a new list containing the elements of the input list, along with
+#        given number, which should be at the end of the new list.
+    lst.append(num)
+    new_list = lst
+    return new_list
 
-    pass
 
-
-def calculate_price(FILL_ME_IN):
+def calculate_price(base_price, state, tax_rate=0.05):
     """Calculate total price of an item, figuring in state taxes and fees.
 
     >>> calculate_price(40, "CA")
@@ -159,8 +170,57 @@ def calculate_price(FILL_ME_IN):
 
     """
 
-    pass
+    
+    if state == "CA":
+        RECYCLING_FEE = 0.03
+        after_tax = base_price * (1 + tax_rate)
+        total_price = after_tax * (1 + RECYCLING_FEE)
+        print total_price
+    elif state == "NM":
 
+        # Makes it clear that the total price is the after tax price.
+        after_tax = base_price * (1 + tax_rate)
+        total_price = after_tax
+        print total_price
+    elif state == "OR":
+        after_tax = base_price * (1 + tax_rate)
+        total_price = after_tax
+        print total_price
+    elif state == "PA":
+        HIGHWAY_SAFETY_FEE = 2.00
+        after_tax = base_price * (1 + tax_rate)
+        total_price = after_tax + HIGHWAY_SAFETY_FEE
+        print total_price
+    elif state == "MA":
+        COMMONWEALTH_FUND_FEE_1 = 1.00
+        COMMONWEALTH_FUND_FEE_2 = 3.00
+        after_tax = base_price * (1 + tax_rate)
+
+        if base_price < 100:
+            total_price = after_tax + COMMONWEALTH_FUND_FEE_1
+            print total_price
+        elif base_price > 100:
+            total_price = after_tax + COMMONWEALTH_FUND_FEE_2
+            print total_price
+    else:
+        print "Something went wrong. Please try again."
+
+
+#    (d) Write a function calculate_price to calculate an item's total cost by
+#        adding tax, and any fees required by state law.
+
+#        Your function will take as parameters (in this order): the base price of
+#        the item, a two-letter state abbreviation, and the tax percentage (as a
+#        two-digit decimal, so, for instance, 5% will be .05). If the user does not
+#        provide a tax rate it should default to 5%.
+
+#        CA law requires stores to collect a 3% recycling fee, PA requires a $2
+#        highway safety fee, and in MA, there is a Commonwealth Fund fee of $1 for
+#        items with a base price under $100 and $3 for items $100 or more. Fees are
+#        added *after* the tax is calculated.
+
+#        Your function should return the total cost of the item, including tax and
+#        fees.
 
 ###############################################################################
 
