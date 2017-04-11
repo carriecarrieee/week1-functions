@@ -54,11 +54,11 @@ def intro(town_name, first_name, last_name):
     full_name = first_and_last(first_name, last_name)
 
     if is_hometown(town_name) == True:
-        print "Hi, {}, we're from the same place!".format(full_name)
+        print "Hi {}, we're from the same place!".format(full_name)
     else:
-        print "Hi, {}, I'd like to visit {}!".format(full_name, town_name)
+        print "Hi {}, I'd like to visit {}!".format(full_name, town_name)
 
-intro("San Francisco", "Carrie", "Li")
+intro("San Francisco", "Hackbright", "Instructor")
 
 
 ###############################################################################
@@ -245,6 +245,23 @@ def calculate_price(base_price, state, tax_rate=0.05):
 
 #        >>> outer("Balloonicorn")
 #        ('Balloonicorn', 'BalloonicornBalloonicornBalloonicorn')
+
+
+def takes_multiple_args(first_arg, *argv):
+    """ Takes an arbitrary number of arguments annd returns them in a list.
+    """
+
+    # Initialize an empty list, then add the first argument to the list.
+    arg_list = []
+    arg_list.append(first_arg)
+
+    # Loop through each remaining argument given and add them to the list.
+    for arg in argv:
+        arg_list.append(arg)
+    print "For breakfast, I would like: ", arg_list
+
+# Sample function call with 3 breakfast item arguments :)
+takes_multiple_args('bacon', 'ham', 'eggs')
 
 
 ###############################################################################
